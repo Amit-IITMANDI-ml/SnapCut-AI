@@ -1,0 +1,5 @@
+import { FileImage, RefreshCw, X } from 'lucide-react'
+import type { SelectedImage } from '../types/image'
+import { formatBytes } from '../lib/imageValidation'
+
+export function ImagePreview({ image, onChange, onReset }: { image: SelectedImage; onChange: () => void; onReset: () => void }) { return <section className="selected-card"><div className="selected-card__image"><img src={image.url} alt={`Selected image: ${image.name}`} /></div><div className="selected-card__body"><div className="selected-card__title"><div className="file-icon"><FileImage /></div><div><h2>{image.name}</h2><p>Ready for background removal</p></div></div><dl className="metadata"><div><dt>File size</dt><dd>{formatBytes(image.size)}</dd></div><div><dt>Dimensions</dt><dd>{image.width} × {image.height} px</dd></div><div><dt>Format</dt><dd>{image.file.type.replace('image/', '').toUpperCase()}</dd></div></dl><div className="selected-card__actions"><button className="text-button" onClick={onChange}><RefreshCw size={16} /> Choose another</button><button className="text-button text-button--danger" onClick={onReset}><X size={17} /> Remove image</button></div></div></section> }
